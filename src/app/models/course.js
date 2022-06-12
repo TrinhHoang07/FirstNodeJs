@@ -10,6 +10,8 @@ const Course = new Schema({
     thumb_nail: { type: String },
     slug: { type: String, slug: 'name', unique: true },
     video_id: { type: String },
+    count_lesson: { type: String },
+    time: { type: String },
 }, {
     timestamps: true
 });

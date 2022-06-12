@@ -1,7 +1,13 @@
 <div class="mt-4">
     <div class="row">
         <div class="col-lg-3">
-            <button>Hoc Ngay</button>
+            <button type="button" class="btn btn-primary mb-2 btn-block mt-2">Học Ngay</button>
+            <ul class="list-group">
+                <li class="list-group-item">Trình độ cơ bản</li>
+                <li class="list-group-item">Tổng số <strong>{{course.count_lesson}}</strong> bài học</li>
+                <li class="list-group-item">Thời lượng <strong>{{course.time}}</strong></li>
+                <li class="list-group-item">Học mọi lúc mọi nơi</li>
+            </ul>
         </div>
         <div class="col-lg-9">
             <h2>{{course.name}}</h2>
