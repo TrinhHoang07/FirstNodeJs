@@ -1,4 +1,8 @@
 <div class="mt-4">
+    <div class="container d-flex justify-content-between mb-2">
+        <h5 class="header mb-2">My Courses</h5>
+        <a href="/me/deleted/courses">Thùng rác</a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -20,6 +24,13 @@
                     <a href="" class="btn" data-toggle="modal" data-id="{{this._id}}"
                         data-target="#delete-course">Xóa</a>
                 </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="5" class="text-center">Bạn chưa đăng khóa học nào!
+                    <a href="/courses/create">Đăng khóa học</a>
+                </td>
+
             </tr>
             {{/each}}
         </tbody>

@@ -9,6 +9,14 @@ class MeController {
             })
             .catch(next);
     }
+
+    deleteCourseFind(req, res, next) {
+        Course.findDeleted({})
+            .then(courses => {
+                res.render('me/deleted-courses', { courses: multiple(courses) });
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new MeController();
