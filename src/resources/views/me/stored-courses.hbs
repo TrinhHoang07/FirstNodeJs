@@ -17,10 +17,54 @@
                 <td>{{this.time}}</td>
                 <td>
                     <a href="/courses/{{this._id}}/edit" class="btn">Sửa</a>
-                    <a href="" class="btn">Xóa</a>
+                    <a href="" class="btn" data-toggle="modal" data-id="{{this._id}}"
+                        data-target="#delete-course">Xóa</a>
                 </td>
             </tr>
             {{/each}}
         </tbody>
     </table>
 </div>
+
+{{!-- Delete Course --}}
+
+<div class="modal fade" id="delete-course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa Khóa Học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-delete-course" class="btn btn-primary">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- form delete --}}
+<form name="delete-form" method="POST"></form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let idDelete;
+        const formDelete = document.forms["delete-form"];
+        $('#delete-course').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget);
+            idDelete = button.data('id');
+
+            console.log(idDelete);
+        })
+        $('#btn-delete-course').click(function () {
+            formDelete.action = '/courses/' + idDelete + '?_method=DELETE';
+            formDelete.submit();
+        })
+    })
+</script>
