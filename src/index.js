@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const moment = require('moment');
 
 const app = express();
 app.use(morgan('combined'));
@@ -24,6 +25,7 @@ app.use(methodOverride('_method'));
 app.engine('hbs', engine({
     extname: '.hbs', helpers: {
         sum: (a, b) => a + b,
+        formatDate: date => moment(date).format('MMMM Do YYYY, h:mm:ss a'),
     }
 }));
 app.set('view engine', 'hbs');

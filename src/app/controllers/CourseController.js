@@ -64,6 +64,29 @@ class CourseController {
             .catch(next);
     }
 
+    //POST /courses/handle-form-container
+    handleFormContainer(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Course.delete({ _id: { $in: req.body.checkboxIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'delete-destroy':
+                Course.deleteMany({ _id: { $in: req.body.checkboxIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'restore':
+                Course.restore({ _id: { $in: req.body.checkboxIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({ message: 'Invalid action' });
+        }
+    }
+
 }
 
 module.exports = new CourseController();

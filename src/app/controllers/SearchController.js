@@ -1,6 +1,15 @@
+const Course = require('../models/course');
+const { multiple } = require('../../until/mongoose');
+
 class SearchController {
-    index(req, res) {
-        res.render('search');
+    index(req, res, next) {
+        const q = req.query.q;
+        Course.find({ name: { $regex: q + '', $options: 'i' } })
+            .then(courses => {
+                res.render('search', { courses: multiple(courses) });
+                // res.json(courses);
+            })
+            .catch(next);
     }
     show(req, res) {
         res.send('Blog search results');

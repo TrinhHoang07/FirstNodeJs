@@ -5,6 +5,7 @@ const courseRouter = require('../app/controllers/CourseController');
 
 router.get('/create', courseRouter.create);
 router.post('/store', courseRouter.store);
+router.post('/handle-form-container', courseRouter.handleFormContainer);
 router.put('/:id', courseRouter.update);
 router.delete('/:id', courseRouter.delete);
 router.delete('/:id/force', courseRouter.destroy);
