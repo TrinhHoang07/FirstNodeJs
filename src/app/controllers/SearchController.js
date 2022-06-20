@@ -7,7 +7,6 @@ class SearchController {
         Course.find({ name: { $regex: q + '', $options: 'i' } })
             .then(courses => {
                 res.render('search', { courses: multiple(courses) });
-                // res.json(courses);
             })
             .catch(next);
     }
